@@ -1,0 +1,738 @@
+@charset "UTF-8";
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #1A1A2E;
+  background: #FAF7F0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 26, 46, 0.035) 1px, transparent 0);
+  background-size: 28px 28px;
+  min-height: 100vh;
+}
+
+a {
+  color: #3D5A80;
+  text-decoration: none;
+  outline: 2px solid transparent;
+}
+a:focus-visible {
+  outline: 2px solid #3D5A80;
+  outline-offset: 2px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
+  color: #1A1A2E;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-optical-sizing: auto;
+}
+
+h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+::-moz-selection {
+  background: rgba(232, 163, 61, 0.35);
+}
+
+::selection {
+  background: rgba(232, 163, 61, 0.35);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.1rem 2rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #DDD6C7;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+nav::before {
+  content: "Notes.in";
+  font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1A1A2E;
+  margin-right: auto;
+  letter-spacing: -0.01em;
+}
+nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4A4A5E;
+  padding: 0.4rem 0;
+  margin-left: 1.75rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  nav a {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+nav a:first-of-type {
+  margin-left: 0;
+}
+nav a:hover {
+  color: #1A1A2E;
+  text-decoration: none;
+  border-bottom-color: #E8A33D;
+}
+nav a[href="/logout"] {
+  color: #6B7280;
+}
+
+body > div,
+nav + div {
+  max-width: 960px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+body:has(form[action="/login"]),
+body:has(form[action="/register"]) {
+  align-items: center;
+  justify-content: center;
+}
+
+body:has(form[action="/login"]) > div,
+body:has(form[action="/register"]) > div {
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(26, 26, 46, 0.06), 0 8px 24px rgba(26, 26, 46, 0.08);
+  padding: 2.75rem 2.5rem;
+  max-width: 380px;
+  text-align: left;
+  position: relative;
+}
+body:has(form[action="/login"]) > div::before,
+body:has(form[action="/register"]) > div::before {
+  content: "ARCHIVE — REGISTER";
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: #DDD6C7;
+}
+body:has(form[action="/login"]) > div h1,
+body:has(form[action="/register"]) > div h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.1em;
+}
+body:has(form[action="/login"]) > div h3,
+body:has(form[action="/register"]) > div h3 {
+  margin-bottom: 1.75rem;
+  font-size: 0.9rem;
+}
+body:has(form[action="/login"]) > div > a,
+body:has(form[action="/register"]) > div > a {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+body:has(form[action="/login"]) > div > a:hover,
+body:has(form[action="/register"]) > div > a:hover {
+  color: #3D5A80;
+}
+
+body:has(form[action="/login"]) > div::before {
+  content: "ARCHIVE — SIGN IN";
+}
+
+body:has(form[action="/register"]) > div::before {
+  content: "ARCHIVE — NEW ENTRY";
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #4A4A5E;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.35rem;
+  margin-bottom: -0.25rem;
+}
+
+input[type=text],
+input[type=password],
+input[type=file],
+select {
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.9375rem;
+  padding: 0.65rem 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 4px;
+  color: #1A1A2E;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  input[type=text],
+  input[type=password],
+  input[type=file],
+  select {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+input[type=text],
+input[type=password],
+input[type=file],
+select {
+  outline: 2px solid transparent;
+}
+input[type=text]:focus-visible,
+input[type=password]:focus-visible,
+input[type=file]:focus-visible,
+select:focus-visible {
+  outline: 2px solid #3D5A80;
+  outline-offset: 2px;
+}
+input[type=text]::-moz-placeholder, input[type=password]::-moz-placeholder, input[type=file]::-moz-placeholder, select::-moz-placeholder {
+  color: rgb(138.5472340426, 144.9157446809, 157.6527659574);
+}
+input[type=text]::placeholder,
+input[type=password]::placeholder,
+input[type=file]::placeholder,
+select::placeholder {
+  color: rgb(138.5472340426, 144.9157446809, 157.6527659574);
+}
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=file]:hover,
+select:hover {
+  border-color: rgb(197.88, 186.12, 160.92);
+}
+input[type=text]:focus-visible,
+input[type=password]:focus-visible,
+input[type=file]:focus-visible,
+select:focus-visible {
+  border-color: #3D5A80;
+  box-shadow: 0 0 0 3px rgba(61, 90, 128, 0.12);
+}
+
+input[type=file] {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+input[type=file]::file-selector-button {
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.85rem;
+  margin-right: 0.85rem;
+  background: #1A1A2E;
+  color: #FAF7F0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  input[type=file]::file-selector-button {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+input[type=file]::file-selector-button:hover {
+  background: #3D5A80;
+}
+
+select {
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A4A5E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  padding-right: 2.25rem;
+}
+
+input[type=submit] {
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  margin-top: 0.25rem;
+  background: #1A1A2E;
+  color: #FAF7F0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  input[type=submit] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+input[type=submit] {
+  outline: 2px solid transparent;
+}
+input[type=submit]:focus-visible {
+  outline: 2px solid #3D5A80;
+  outline-offset: 2px;
+}
+input[type=submit]:hover {
+  background: #3D5A80;
+}
+input[type=submit]:active {
+  transform: scale(0.98);
+}
+
+div > form[action="/upload"] {
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 4px 16px rgba(26, 26, 46, 0.06);
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+div > form[action="/upload"]::before {
+  content: "NEW SUBMISSION";
+  position: absolute;
+  top: 1.25rem;
+  right: 1.75rem;
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: #C7872A;
+  background: rgba(232, 163, 61, 0.14);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+div > form[action="/upload"] input[type=text],
+div > form[action="/upload"] select {
+  width: 100%;
+}
+div > form[action="/upload"] label[for=branch], div > form[action="/upload"] label[for=semester] {
+  margin-bottom: -0.4rem;
+}
+div > form[action="/upload"] input[type=submit] {
+  align-self: flex-start;
+  background: #C7872A;
+}
+div > form[action="/upload"] input[type=submit]:hover {
+  background: rgb(165.310373444, 112.1452282158, 34.889626556);
+}
+
+h2 {
+  margin-top: 0;
+}
+h2 + form[action="/upload"] {
+  margin-top: 1rem;
+}
+
+form[action="/search"] {
+  flex-direction: row;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+}
+form[action="/search"] input[type=text] {
+  flex: 1;
+}
+form[action="/search"] input[type=submit] {
+  margin-top: 0;
+  background: #FFFFFF;
+  color: #1A1A2E;
+  border: 1px solid #DDD6C7;
+}
+form[action="/search"] input[type=submit]:hover {
+  background: #1A1A2E;
+  color: #FAF7F0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 4px 16px rgba(26, 26, 46, 0.06);
+}
+
+th {
+  text-align: left;
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6B7280;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #DDD6C7;
+  background: rgb(248.725, 244.96, 236.175);
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #E8E2D4;
+  font-size: 0.875rem;
+  color: #4A4A5E;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(61, 90, 128, 0.035);
+}
+
+td:first-child {
+  color: #1A1A2E;
+  font-weight: 500;
+}
+
+td:nth-child(3) {
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+td:nth-child(4) {
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.75rem;
+  color: #2E4560;
+}
+
+td:nth-child(5) {
+  color: #6B7280;
+  font-size: 0.8125rem;
+}
+
+td:nth-child(6) {
+  color: #6B7280;
+  font-size: 0.8125rem;
+}
+
+td:last-child a {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  background: rgba(61, 90, 128, 0.1);
+  color: #2E4560;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  td:last-child a {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+td:last-child a:hover {
+  background: #3D5A80;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a[href^="/delete/"] {
+  background: rgba(196, 69, 54, 0.1);
+  color: #A6382C;
+}
+a[href^="/delete/"]:hover {
+  background: #C44536;
+  color: #FFFFFF;
+}
+
+h3,
+p {
+  background: #FFFFFF;
+  border: 1px dashed #DDD6C7;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #6B7280;
+  font-style: normal;
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  margin: 0 0 1.5rem;
+}
+
+body:has(form[action="/login"]) h3,
+body:has(form[action="/register"]) h3 {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+a[href="/backtohome"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4A4A5E;
+}
+a[href="/backtohome"]::before {
+  content: "←";
+}
+a[href="/backtohome"]:hover {
+  color: #3D5A80;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  nav {
+    padding: 1rem 1.25rem;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+  body > div, nav + div {
+    padding: 0 1rem;
+    margin: 1.5rem auto;
+  }
+  h1 {
+    font-size: 1.65rem;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead {
+    display: none;
+  }
+  table {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+  tr {
+    background: #FFFFFF;
+    border: 1px solid #DDD6C7;
+    border-radius: 8px;
+    margin-bottom: 0.85rem;
+    padding: 0.5rem 0.25rem;
+    box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 4px 16px rgba(26, 26, 46, 0.06);
+  }
+  td {
+    border-bottom: none;
+    padding: 0.4rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    text-align: right;
+  }
+  td::before {
+    content: attr(data-label);
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6B7280;
+    flex-shrink: 0;
+    text-align: left;
+  }
+  td:first-child::before {
+    content: "Title";
+  }
+  body:has(form[action="/login"]) > div,
+  body:has(form[action="/register"]) > div {
+    max-width: 92vw;
+    padding: 2rem 1.5rem;
+  }
+}
+.profile-card {
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 4px 16px rgba(26, 26, 46, 0.06);
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 2rem;
+  position: relative;
+}
+.profile-card::before {
+  content: "USER RECORD";
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #DDD6C7;
+}
+.profile-card h1 {
+  margin-bottom: 1.5rem;
+}
+.profile-card p {
+  margin: 0.9rem 0;
+  color: #4A4A5E;
+  font-size: 0.95rem;
+}
+.profile-card p strong {
+  color: #1A1A2E;
+  display: inline-block;
+  width: 150px;
+}
+
+.profile-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.profile-actions a,
+.profile-actions button {
+  font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid #DDD6C7;
+  background: #FAF7F0;
+  color: #1A1A2E;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.profile-actions a:hover,
+.profile-actions button:hover {
+  background: #3D5A80;
+  color: white;
+  border-color: #3D5A80;
+  text-decoration: none;
+}
+.profile-actions .delete-btn {
+  margin-left: auto;
+  background: #C44536;
+  color: white;
+  border-color: #C44536;
+}
+.profile-actions .delete-btn:hover {
+  background: #A6382C;
+  border-color: #A6382C;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 46, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #FFFFFF;
+  border: 1px solid #DDD6C7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(26, 26, 46, 0.06), 0 8px 24px rgba(26, 26, 46, 0.08);
+  width: min(460px, 90vw);
+  padding: 2rem;
+  text-align: left;
+  position: relative;
+  animation: fadeIn 0.18s ease;
+}
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+.modal-content p {
+  color: #4A4A5E;
+  margin-bottom: 1rem;
+}
+.modal-content form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.confirm-btn {
+  background: #C44536;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.confirm-btn:hover {
+  background: #A6382C;
+}
+
+.cancel-btn {
+  background: #FAF7F0;
+  color: #1A1A2E;
+  border: 1px solid #DDD6C7;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancel-btn:hover {
+  background: #3D5A80;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=styles.css.map */

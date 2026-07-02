@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Notes.in</title>
+{% endblock %}
+
+{% block body %}
+   <div>
+        <h1>Notes.in</h1>
+        <h3>Login</h3>
+        <form action="/login" method="POST">
+            <label for="username" id="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password" id="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <input type="submit" value="Login">
+        </form>
+        <a href="/register_page">Register</a>
+   </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head %}
+{% endblock %}
+{% block body %}
+<nav>
+    <a href="/home">Home</a>
+    <a href="/upload_page">Upload</a>
+    <a href="/profile">Profile</a>
+    <a href="/logout">Logout</a>
+    </nav>
+<div>
+    <h2>My notes</h2>
+    {% if notes|length == 0 %}
+        <p>No notes uploaded by you.</p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Subject</th>
+            <th>Branch</th>
+            <th>Semester</th>
+            <th>Action</th>
+        </tr>
+        {% for note in notes %}
+        <tr>
+            <td>{{ note.title }}</td>
+            <td>{{ note.subject }}</td>
+            <td>{{ note.branch }}</td>
+            <td>{{ note.semester }}</td>
+            <td>
+                <a href="/delete/{{ note.id }}">Delete</a>
+                <a href="/edit_notes/{{ note.id }}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Notes.in</title>
+{% endblock %}
+
+{% block body %}
+   <div>
+        <h2>Register new User</h2>
+        <form action="/register" method="POST">
+            <label for="username" id="username">Username:</label>
+            <input type="text" name="username" required /><br>
+            <label for="password" id="password">Password:</label>
+            <input type="password" name="password"required /><br>
+            <input type="submit" value="Register" />
+        </form>
+   </div>
+{% endblock %}
