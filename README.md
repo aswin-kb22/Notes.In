@@ -1,10 +1,11 @@
 # 📚 Notes.in
-
 A Flask-based web application for sharing, searching, and managing academic notes.
 > 🚧 **Project Status:** Currently under development. New features and improvements are being added regularly.
+---
 ## ✨ Overview
 Notes.in is a web application that allows students to upload, browse, preview, search, and download academic notes. It provides secure user authentication so that users can manage only the notes they have uploaded.
 This project is being developed as part of my B.Tech Computer Science coursework while exploring Flask, SQLAlchemy, and web development.
+---
 ## 🚀 Current Features
 ### Authentication
 - User Registration
@@ -29,6 +30,7 @@ This project is being developed as part of my B.Tech Computer Science coursework
 - Only the uploader can edit a note.
 - Only the uploader can delete a note.
 - Protected routes using Flask sessions.
+---
 ## 🛠️ Tech Stack
 ### Backend
 - Python
@@ -44,7 +46,9 @@ This project is being developed as part of my B.Tech Computer Science coursework
 ### Version Control
 - Git
 - GitHub
+---
 ## 📂 Project Structure
+```
 Notes.in/
 │
 ├── main.py
@@ -69,6 +73,9 @@ Notes.in/
 ├── uploads/
 │
 └── README.md
+```
+---
+
 ## ⚙️ Installation
 Clone the repository
 ```bash
@@ -99,6 +106,10 @@ Open your browser and visit
 ```
 http://127.0.0.1:5000
 ```
+---
+## 📸 Screenshots
+Screenshots will be added as the project progresses.
+---
 ## 🚧 Upcoming Features
 - Advanced Filtering
 - Dashboard
@@ -109,6 +120,7 @@ http://127.0.0.1:5000
 - User Statistics
 - Improved UI/UX
 - Admin Panel (Future)
+---
 ## 🎯 Learning Objectives
 This project is helping me learn:
 - Flask
@@ -120,8 +132,11 @@ This project is helping me learn:
 - Database Relationships
 - Git & GitHub
 - Frontend Design with SCSS
+---
+---
 ## 📄 License
 This project is intended for educational purposes.
+---
 ## 👨‍💻 Author
 **Aswin KB**
 GitHub: https://github.com/aswin-kb22
