@@ -5,6 +5,9 @@ import os
 
 app=Flask(__name__)
 
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.secret_key = os.environ.get("SECRET_KEY", "your_secret_key")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
 db = SQLAlchemy(app)
@@ -103,7 +106,7 @@ def upload():
     file =request.files['note']
 
     filename=file.filename
-    file.save(os.path.join('uploads',filename))
+    file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
     user_id=session.get("user_id")
     new_note=Note(
