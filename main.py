@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app=Flask(__name__)
-app.secret_key = 'your_secret_key'
+
+app.secret_key = os.environ.get("SECRET_KEY", "your_secret_key")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
 db = SQLAlchemy(app)
 class Note(db.Model):
@@ -225,7 +226,8 @@ def logout():
     session.clear()
     return redirect('/')
 
+with app.app_context():
+    db.create_all()
+    
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True) 
